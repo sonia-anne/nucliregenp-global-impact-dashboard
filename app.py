@@ -45,12 +45,26 @@ fig_map = px.choropleth(
     title="🌍 Estimated Progeria Prevalence & Therapy Access"
 )
 fig_map.update_geos(
-    showframe=False,
-    showcoastlines=False,
-    projection_rotation=dict(lon=-10, lat=10),
+    showframe=True,
+    showcoastlines=True,
+    framecolor="white",
+    coastlinecolor="white",
+    landcolor="black",
+    lakecolor="black",
+    oceancolor="black",
+    showland=True,
     bgcolor='rgba(0,0,0,0)'
 )
-fig_map.update_layout(height=700, margin=dict(l=0, r=0, t=50, b=0))
+fig_map.update_layout(
+    geo=dict(
+        showcountries=True,
+        countrycolor="white",
+        showocean=True,
+        oceancolor="#000000"
+    ),
+    height=750,
+    margin=dict(l=0, r=0, t=50, b=0)
+)
 st.plotly_chart(fig_map, use_container_width=True)
 
 # ---------- 💸 Gráfico de Barras Avanzado ----------
@@ -86,7 +100,7 @@ flow_fig = go.Figure(go.Sankey(
     node=dict(
         pad=20,
         thickness=30,
-        line=dict(color="black", width=0.5),
+        line=dict(color="white", width=1),
         label=["High-Income Donors", "Low-Income Patients", "NUCLIREGEN Therapies", "Donation Gateway"],
         color=["#00f7ff", "#ffcf00", "#7efff5", "#fc46aa"]
     ),
